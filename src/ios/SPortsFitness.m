@@ -6,7 +6,8 @@
 
 @implementation SPortsFitness
 /*
-*    command.arguments[0] 某一天的日期yyyy-MM-dd 今天的不传或@""
+*    command.arguments[0]  某一天的日期yyyy-MM-dd 今天的传@""
+ 即cordova.plugins.SPortsFitness.coolMethod("", success, error);或者cordova.plugins.SPortsFitness.coolMethod("2019-12-07", success, error);
  
  返回参数
 *    numberOfSteps 用户行走的步数
@@ -17,8 +18,7 @@
 *    currentCadence 返回的是每秒钟的步数。
 *    averageActivePace 返回自那时以来的平均活动速度
 */
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
+- (void)sportsMethod:(CDVInvokedUrlCommand*)command
 {
     
 
@@ -44,6 +44,16 @@
 
             }];
             [self.pedometer queryPedometerDataFromDate:lastDate toDate:toDate withHandler:^(CMPedometerData * _Nullable pedometerData, NSError * _Nullable error) {
+                
+                if ([CMPedometer authorizationStatus]!=3) {
+                  UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 运动与健身]中 打开app访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
+                  UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                   }];
+                  [alertC addAction:alertA];
+                  [weakSelf.viewController presentViewController:alertC animated:YES completion:nil];
+                      return ;
+                   }
+                
                 // 如果没有错误，具体信息从pedometerData参数中获取
     //            pedometerData
                 NSLog(@"步数: %zd", [pedometerData.numberOfSteps integerValue]);
@@ -62,16 +72,7 @@
 }
 - (void)podPedometerData:(CMPedometerData *)pedometerData InvokedUrlCommand:(CDVInvokedUrlCommand*)command error:(NSError *)error
 {
-    
-//    numberOfSteps 用户行走的步数
-//    distance 用户行走的距离，以米为单位
-//    floorsAscended 楼梯上升的楼层数目。值是零
-//    floorsDescended 下降的楼层数目。值是零
-//    currentPace 它返回当前的速度，单位是s/m(秒/米)
-//    currentCadence 返回的是每秒钟的步数。
-//    averageActivePace 返回自那时以来的平均活动速度
     CDVPluginResult* pluginResult = nil;
-//    NSString* echo = [command.arguments objectAtIndex:0];
     if (error) {
           NSLog(@"error--%@",error);
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
