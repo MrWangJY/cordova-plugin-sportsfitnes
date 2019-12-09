@@ -17,7 +17,7 @@
 
 /*
 *    command.arguments[0]  某一天的日期yyyy-MM-dd 今天的传@""
- 即cordova.plugins.SPortsFitness.coolMethod("", success, error);或者cordova.plugins.SPortsFitness.coolMethod("2019-12-07", success, error);
+ 即cordova.plugins.SPortsFitness.sportsMethod("", success, error);或者cordova.plugins.SPortsFitness.sportsMethod("2019-12-07", success, error);
  
  返回参数
 *    numberOfSteps 用户行走的步数
