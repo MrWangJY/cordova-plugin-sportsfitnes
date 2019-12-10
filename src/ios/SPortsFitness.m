@@ -16,7 +16,7 @@
 *    floorsDescended 下降的楼层数目。值是零
 *    currentPace 它返回当前的速度，单位是s/m(秒/米)
 *    currentCadence 返回的是每秒钟的步数。
-*    averageActivePace 返回自那时以来的平均活动速度
+*    averageActivePace 返回自那时以来的平均活动速度，单位是s/m(秒/米)
 */
 - (void)sportsMethod:(CDVInvokedUrlCommand*)command
 {
@@ -80,7 +80,7 @@
     }else{
     NSString* echo = [NSString stringWithFormat:@"%@",pedometerData.numberOfSteps];
 
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"numberOfSteps":echo?:@"",@"distance":pedometerData.distance?:@"",@"floorsAscended":pedometerData.floorsAscended?:@"",@"floorsDescended":pedometerData.floorsDescended?:@"",@"currentPace":pedometerData.currentPace?:@"",@"currentCadence":pedometerData.currentCadence?:@"",@"averageActivePace":pedometerData.averageActivePace?:@""}];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"numberOfSteps":,pedometerData.numberOfSteps?:0,@"distance":pedometerData.distance?:0,@"floorsAscended":pedometerData.floorsAscended?:0,@"floorsDescended":pedometerData.floorsDescended?:0,@"currentPace":pedometerData.currentPace?:0,@"currentCadence":pedometerData.currentCadence?:0,@"averageActivePace":pedometerData.averageActivePace?:0}];
     echo = [self dictionaryToJson:dic];
     if (echo != nil && [echo length] > 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];

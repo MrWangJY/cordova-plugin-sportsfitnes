@@ -26,7 +26,7 @@
 *    floorsDescended 下降的楼层数目。值是零
 *    currentPace 它返回当前的速度，单位是s/m(秒/米)
 *    currentCadence 返回的是每秒钟的步数。
-*    averageActivePace 返回自那时以来的平均活动速度
+*    averageActivePace 返回自那时以来的平均活动速度，单位是s/m(秒/米)
 */
 - (void)sportsMethod:(CDVInvokedUrlCommand*)command;
 @end
