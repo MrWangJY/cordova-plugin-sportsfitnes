@@ -80,7 +80,7 @@
     }else{
     NSString* echo = [NSString stringWithFormat:@"%@",pedometerData.numberOfSteps];
 
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"numberOfSteps":,pedometerData.numberOfSteps?:0,@"distance":pedometerData.distance?:0,@"floorsAscended":pedometerData.floorsAscended?:0,@"floorsDescended":pedometerData.floorsDescended?:0,@"currentPace":pedometerData.currentPace?:0,@"currentCadence":pedometerData.currentCadence?:0,@"averageActivePace":pedometerData.averageActivePace?:0}];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"numberOfSteps":pedometerData.numberOfSteps?:0,@"distance":pedometerData.distance?:0,@"floorsAscended":pedometerData.floorsAscended?:0,@"floorsDescended":pedometerData.floorsDescended?:0,@"currentPace":pedometerData.currentPace?:0,@"currentCadence":pedometerData.currentCadence?:0,@"averageActivePace":pedometerData.averageActivePace?:0}];
     echo = [self dictionaryToJson:dic];
     if (echo != nil && [echo length] > 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
